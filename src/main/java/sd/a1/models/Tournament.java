@@ -3,14 +3,15 @@ package sd.a1.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+
+import java.sql.Date;
 
 @Entity
 public class Tournament {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private String name;
     private Date date;
 
@@ -30,12 +31,12 @@ public class Tournament {
         this.name = name;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Id
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 }

@@ -9,31 +9,31 @@ public class Venue {
 
     @Id
     @GeneratedValue
-    private int id;
-    private String fighter;
-    private String tournament;
+    private Integer id;
+    private Integer fighter;
+    private Integer tournament;
 
-    public String getFighter() {
+    public Integer getFighter() {
         return fighter;
     }
 
-    public void setFighter(String fighter) {
+    public void setFighter(Integer fighter) {
         this.fighter = fighter;
     }
 
-    public String getTournament() {
+    public Integer getTournament() {
         return tournament;
     }
 
-    public void setTournament(String tournament) {
+    public void setTournament(Integer tournament) {
         this.tournament = tournament;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 }
