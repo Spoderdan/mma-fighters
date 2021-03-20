@@ -1,6 +1,7 @@
 package sd.a1.models;
 
 import javax.persistence.*;
+import java.util.Random;
 
 @Entity
 @Table(name = "fighter")
@@ -14,15 +15,8 @@ public class Fighter {
     private String firstName;
     @Column(name = "weight_class")
     private String weightClass;
-
-    public Fighter(String lastName, String firstName, String weightClass) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.weightClass = weightClass;
-    }
-
-    public Fighter() {
-    }
+    @Column(name = "health_status")
+    private String healthStatus;
 
     public Integer getId() {
         return id;
@@ -56,13 +50,19 @@ public class Fighter {
         this.weightClass = weightClass;
     }
 
-    @Override
-    public String toString() {
-        return "Fighter{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", weightClass='" + weightClass + '\'' +
-                '}';
+    public String getHealthStatus() {
+        return healthStatus;
+    }
+
+    public void setHealthStatus(String healthStatus) {
+        this.healthStatus = healthStatus;
+    }
+
+    public void test(){
+        Random random = new Random();
+        if(random.nextBoolean())
+            healthStatus = "Positive";
+        else
+            healthStatus = "Negative";
     }
 }

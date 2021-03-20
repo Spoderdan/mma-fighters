@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Fighters</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <a th:href="@{/}">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </a>
+            <h1 class="display-4 text-center">Fighter Test Results</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+                <tr th:each="result : ${results}">
+                    <td th:text="${result.status}"></td>
+                    <td th:text="${result.date}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <form th:action="@{/fighter/add/result}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label> Select Fighter
+                        <select name="id">
+                            <option value="0">select fighter</option>
+                            <option th:each="fighter : ${fighters}"
+                                    th:value="${fighter.id}"
+                                    th:text="${fighter.firstName}+ ' ' +${fighter.lastName}">
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input name="status" class="form-control" id="status"/>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input name="date" class="form-control" id="date" type="date"/>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

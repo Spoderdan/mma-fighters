@@ -1,31 +1,45 @@
 package sd.a1.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sd.a1.models.Tournament;
 import sd.a1.repositories.TournamentRepository;
 
 import java.sql.Date;
 
-@RestController
+@Controller
 @RequestMapping(path = "/tournament")
 public class TournamentController {
 
-    @Autowired
-    private TournamentRepository tournamentRepository;
+    private final TournamentRepository tournamentRepository;
 
-    @GetMapping(path = "/add")
-    public @ResponseBody String addNewTournament(@RequestParam String name, @RequestParam Date date){
+    @Autowired
+    public TournamentController(TournamentRepository tournamentRepository) {
+        this.tournamentRepository = tournamentRepository;
+    }
+
+    @GetMapping(path = "/")
+    public String getAllTournaments(Model model){
+        model.addAttribute("tournaments", tournamentRepository.findAll());
+        return "tournaments";
+    }
+
+    @PostMapping(path = "/add")
+    public String newTournament(@RequestParam String name, @RequestParam Date date, Model model){
         Tournament tournament = new Tournament();
         tournament.setName(name);
         tournament.setDate(date);
         tournamentRepository.save(tournament);
-        return "Saved new tournament";
+        model.addAttribute("tournament", tournament);
+        return "redirect:/tournament/find/" + tournament.getId();
     }
 
-    @GetMapping(path = "/list")
-    public @ResponseBody Iterable<Tournament> getAllTournaments(){
-        return tournamentRepository.findAll();
+    @GetMapping(path="/find/{id}")
+    public String findById(@PathVariable Integer id, Model model) {
+        model.addAttribute("tournament", tournamentRepository.findTournamentById(id));
+        return "tournament";
     }
 
 }

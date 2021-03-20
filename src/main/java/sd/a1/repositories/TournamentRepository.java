@@ -5,4 +5,6 @@ import sd.a1.models.Tournament;
 
 public interface TournamentRepository extends JpaRepository<Tournament, Integer> {
 
+    Tournament findTournamentById(Integer id);
+
 }

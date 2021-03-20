@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Fighters</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <a th:href="@{/}">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </a>
+            <h1 class="display-4 text-center">Tournaments</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                </tr>
+                <tr th:each="tournament : ${tournaments}">
+                    <td th:text="${tournament.name}"></td>
+                    <td th:text="${tournament.date}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <h2>Create new tournament</h2>
+            <form th:action="@{/tournament/add}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name"> Name </label>
+                    <input name="name" class="form-control" id="name"/>
+                </div>
+                <div class="form-group">
+                    <label for="date"> Date </label>
+                    <input name="date" class="form-control" id="date" type="date"/>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

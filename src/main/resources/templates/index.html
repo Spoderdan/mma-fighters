@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Fighters</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Home</h1>
+        </div>
+    </div>
+    <ul>
+        <li><a th:href="@{/fighter/}"> FIGHTERS </a></li>
+        <li><a th:href="@{/fighter/results/0}"> FIGHTER TEST RESULTS </a></li>
+        <li><a th:href="@{/tournament/}"> TOURNAMENTS </a></li>
+    </ul>
+</div>
+</body>
+</html>

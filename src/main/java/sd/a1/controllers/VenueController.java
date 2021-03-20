@@ -1,32 +1,35 @@
 package sd.a1.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import sd.a1.models.Venue;
 import sd.a1.repositories.VenueRepository;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping(path="/venue")
 public class VenueController {
 
+    private final VenueRepository venueRepository;
+
     @Autowired
-    private VenueRepository venueRepository;
+    public VenueController(VenueRepository venueRepository) {
+        this.venueRepository = venueRepository;
+    }
 
     @GetMapping(path = "/add")
-    public @ResponseBody String addNewVenue(@RequestParam Integer fighter, @RequestParam Integer tournament){
+    public String addNewVenue(@RequestParam Integer fighter1, @RequestParam Integer fighter2, @RequestParam Integer tournament){
         Venue venue = new Venue();
-        venue.setFighter(fighter);
+        venue.setFighter1(fighter1);
+        venue.setFighter2(fighter2);
         venue.setTournament(tournament);
         venueRepository.save(venue);
         return "Saved new venue";
     }
 
     @GetMapping(path = "/list")
-    public @ResponseBody Iterable<Venue> getAllVenues(){
+    public List<Venue> getAllVenues(){
         return venueRepository.findAll();
     }
 

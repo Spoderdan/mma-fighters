@@ -1,5 +1,6 @@
 package sd.a1.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,9 @@ public class Tournament {
     @Id
     @GeneratedValue
     private Integer id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "date")
     private Date date;
 
     public Date getDate() {
@@ -35,7 +38,6 @@ public class Tournament {
         this.id = id;
     }
 
-    @Id
     public Integer getId() {
         return id;
     }

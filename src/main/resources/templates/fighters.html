@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Fighters</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <a th:href="@{/}">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </a>
+            <h1 class="display-4 text-center">Fighters</h1>
+        </div>
+    </div>
+
+    <h2>Signup new fighter</h2>
+    <form th:action="@{/fighter/add}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="firstName"> First Name </label>
+            <input name="firstName" class="form-control" id="firstName"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName"> Last Name</label>
+            <input name="lastName" class="form-control" id="lastName"/>
+        </div>
+        <div class="form-group">
+            <label for="weightClass"> Weight Class</label>
+            <input name="weightClass" class="form-control" id="weightClass"/>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Signup</button>
+    </form>
+
+
+</div>
+</body>
+</html>

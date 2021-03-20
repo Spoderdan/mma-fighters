@@ -10,15 +10,24 @@ public class Venue {
     @Id
     @GeneratedValue
     private Integer id;
-    private Integer fighter;
+    private Integer fighter1;
+    private Integer fighter2;
     private Integer tournament;
 
-    public Integer getFighter() {
-        return fighter;
+    public Integer getFighter1() {
+        return fighter1;
     }
 
-    public void setFighter(Integer fighter) {
-        this.fighter = fighter;
+    public void setFighter1(Integer fighter1) {
+        this.fighter1 = fighter1;
+    }
+
+    public Integer getFighter2() {
+        return fighter2;
+    }
+
+    public void setFighter2(Integer fighter2) {
+        this.fighter2 = fighter2;
     }
 
     public Integer getTournament() {
