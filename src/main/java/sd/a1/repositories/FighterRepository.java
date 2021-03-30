@@ -11,6 +11,10 @@ public interface FighterRepository extends JpaRepository<Fighter, Integer> {
 
     Fighter findFighterById(Integer id);
 
-    List<Fighter> findFighterByFirstName(String firstName);
+    Fighter findFighterByFirstNameAndLastName(String firstName, String lastName);
+
+    List<Fighter> findFighterByQuarantined(String quarantined);
+
+    List<Fighter> findFighterByQuarantinedAndWeightClassAndMatched(String quarantined, String weightClass, String matched);
 
 }

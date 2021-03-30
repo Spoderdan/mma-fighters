@@ -1,6 +1,7 @@
 package sd.a1.models;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Random;
 
 @Entity
@@ -15,8 +16,8 @@ public class Fighter {
     private String firstName;
     @Column(name = "weight_class")
     private String weightClass;
-    @Column(name = "health_status")
-    private String healthStatus;
+    private String quarantined;
+    private String matched;
 
     public Integer getId() {
         return id;
@@ -50,19 +51,35 @@ public class Fighter {
         this.weightClass = weightClass;
     }
 
-    public String getHealthStatus() {
-        return healthStatus;
+    public String getQuarantineStatus() {
+        return quarantined;
     }
 
-    public void setHealthStatus(String healthStatus) {
-        this.healthStatus = healthStatus;
+    public void setQuarantineStatus(String quarantineStatus) {
+        this.quarantined = quarantineStatus;
     }
 
-    public void test(){
+    public static Fighter findById(List<Fighter> fighters, Integer id) {
+        return fighters.stream().filter(fighter -> id.equals(fighter.getId())).findFirst().orElse(null);
+    }
+
+    public String getMatched() {
+        return matched;
+    }
+
+    public void setMatched(String matched) {
+        this.matched = matched;
+    }
+
+    public String test(){
         Random random = new Random();
-        if(random.nextBoolean())
-            healthStatus = "Positive";
+        int nr = random.nextInt(5);
+        if(nr == 1)
+            return "Positive";
         else
-            healthStatus = "Negative";
+            return "Negative";
     }
+
+
+
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Venues</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <a th:href="@{/}">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </a>
+            <h1 class="display-4 text-center">Venues</h1>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Left Corner</th>
+            <th>Right Corner</th>
+            <th>Tournament</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each="venue : ${venues}">
+            <td th:text="${T(sd.a1.models.Fighter).findById(fighters, venue.getFighter1()).getFirstName()}+ ' ' +${T(sd.a1.models.Fighter).findById(fighters, venue.getFighter1()).getLastName()}"></td>
+            <td th:text="${T(sd.a1.models.Fighter).findById(fighters, venue.getFighter2()).getFirstName()}+ ' ' +${T(sd.a1.models.Fighter).findById(fighters, venue.getFighter2()).getLastName()}"></td>
+            <td th:text="${T(sd.a1.models.Tournament).findById(tournaments, venue.getMatch()).getName()}"></td>
+            <td th:text="${T(sd.a1.models.Tournament).findById(tournaments, venue.getMatch()).getDate()}"></td>
+        </tr>
+    </table>
+
+    <form th:action="@{/venue/time}" method="post" enctype="multipart/form-data" class="text-center">
+        <button type="submit" class="btn btn-primary">Pass Time</button>
+    </form>
+
+</div>
+</body>
+</html>

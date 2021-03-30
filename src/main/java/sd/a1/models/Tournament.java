@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Tournament {
@@ -17,6 +18,7 @@ public class Tournament {
     private String name;
     @Column(name = "date")
     private Date date;
+    private String filled;
 
     public Date getDate() {
         return date;
@@ -41,4 +43,17 @@ public class Tournament {
     public Integer getId() {
         return id;
     }
+
+    public String getFilled() {
+        return filled;
+    }
+
+    public void setFilled(String filled) {
+        this.filled = filled;
+    }
+
+    public static Tournament findById(List<Tournament> tournaments, Integer id) {
+        return tournaments.stream().filter(tournament -> id.equals(tournament.getId())).findFirst().orElse(null);
+    }
+
 }

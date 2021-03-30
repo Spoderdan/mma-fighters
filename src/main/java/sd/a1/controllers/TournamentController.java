@@ -31,6 +31,7 @@ public class TournamentController {
         Tournament tournament = new Tournament();
         tournament.setName(name);
         tournament.setDate(date);
+        tournament.setFilled("No");
         tournamentRepository.save(tournament);
         model.addAttribute("tournament", tournament);
         return "redirect:/tournament/find/" + tournament.getId();

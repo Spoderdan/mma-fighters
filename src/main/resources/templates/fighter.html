@@ -7,17 +7,8 @@
 
 </head>
 <body>
-    <h1>Developer</h1>
+    <h1>Fighter</h1>
     Name: <b th:text="${fighter.firstName}"></b> <b th:text="${fighter.lastName}"></b><br/>
     Weight: <span th:text="${fighter.weightClass}"></span><br/>
-
-    <label>
-        <select>
-            <option th:each="tournament : ${tournaments}"
-                    th:value="${tournament.id}"
-                    th:text="${tournament.name}+' : '+${tournament.date}">Tournament
-            </option>
-        </select>
-    </label>
 </body>
 </html>

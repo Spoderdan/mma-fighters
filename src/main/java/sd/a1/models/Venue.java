@@ -1,5 +1,6 @@
 package sd.a1.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,8 @@ public class Venue {
     private Integer id;
     private Integer fighter1;
     private Integer fighter2;
-    private Integer tournament;
+    @Column(name = "tournament")
+    private Integer match;
 
     public Integer getFighter1() {
         return fighter1;
@@ -30,12 +32,12 @@ public class Venue {
         this.fighter2 = fighter2;
     }
 
-    public Integer getTournament() {
-        return tournament;
+    public Integer getMatch() {
+        return match;
     }
 
-    public void setTournament(Integer tournament) {
-        this.tournament = tournament;
+    public void setMatch(Integer tournament) {
+        this.match = tournament;
     }
 
     public void setId(Integer id) {

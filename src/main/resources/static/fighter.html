@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>You first Spring application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="/fighter/add" method="POST">
+    <p>Let's add a fighter.</p>
+
+    <div>
+        <label for="firstName">First name:</label>
+        <input name="first" id="firstName" value="Henry">
+    </div>
+    <div>
+        <label for="lastName">Last name:</label>
+        <input name="last" id="lastName" value="Cejudo">
+    </div>
+    <div>
+        <button>Add fighter</button>
+    </div>
+</form>
+
+<form action="/fighter/list" method="GET">
+    <button>List fighters</button>
+</form>
+
+<form action="/fighter/find/" method="GET">
+    <p>Find fighter.</p>
+
+    <div>
+        <label for="id">Id:</label>
+        <input name="id" id="id" value="1">
+    </div>
+    <div>
+        <button>Find fighter</button>
+    </div>
+</form>
+
+</body>
+</html>

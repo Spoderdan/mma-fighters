@@ -40,8 +40,14 @@ public class FighterController {
         fighter.setLastName(lastName);
         fighter.setFirstName(firstName);
         fighter.setWeightClass(weightClass);
-        fighter.test();
+        fighter.setQuarantineStatus("Yes");
+        fighter.setMatched("No");
         fighterRepository.save(fighter);
+        TestResult testResult = new TestResult();
+        testResult.setFighterId(fighter);
+        testResult.setStatus(fighter.test());
+        testResult.setDate(new Date(1616623200000L)); // 25-Mar-2021
+        testResultsRepository.save(testResult);
         model.addAttribute("fighter", fighter);
         return "redirect:/fighter/find/" + fighter.getId();
     }
@@ -56,24 +62,48 @@ public class FighterController {
     @GetMapping(path = "results/{id}")
     public String findTestResults(@PathVariable Integer id, Model model){
         model.addAttribute("results", testResultsRepository.findByFighterId(fighterRepository.findFighterById(id)));
-        model.addAttribute("fighters", fighterRepository.findAll());
+        model.addAttribute("fighter", fighterRepository.findFighterById(id));
         return "test_results";
     }
 
-    @RequestMapping(value={"/rez"}, method = RequestMethod.POST)
-    public String redirectResults(@RequestParam Integer id){
-        return "redirect:/fighter/results/" + id;
+    @RequestMapping(value={"/results/r"}, method = RequestMethod.POST)
+    public String redirectResults(@RequestParam String firstName, @RequestParam String lastName){
+        Fighter fighter = fighterRepository.findFighterByFirstNameAndLastName(firstName, lastName);
+        return "redirect:/fighter/results/" + fighter.getId();
     }
 
+//    @PostMapping(path="/add/result")
+//    public String newTestResult(@RequestParam Integer id, @RequestParam String status,
+//                                @RequestParam Date date, Model model){
+//        Fighter fighter = fighterRepository.findFighterById(id);
+//        fighter.test();
+//        fighterRepository.save(fighter);
+//        TestResult testResult = new TestResult();
+//        testResult.setFighterId(fighter);
+//        testResult.setStatus(status);
+//        testResult.setDate(date);
+//        testResultsRepository.save(testResult);
+//        model.addAttribute("results", testResult);
+//        return "redirect:/fighter/results/" + id;
+//    }
+
     @PostMapping(path="/add/result")
-    public String newTestResult(@RequestParam Integer id, @RequestParam String status,
-                                @RequestParam Date date, Model model){
+    public String newTestResult(@RequestParam Integer id, Model model){
+        Fighter fighter = fighterRepository.findFighterById(id);
         TestResult testResult = new TestResult();
-        testResult.setFighterId(fighterRepository.findFighterById(id));
-        testResult.setStatus(status);
-        testResult.setDate(date);
+        testResult.setFighterId(fighter);
+        testResult.setStatus(fighter.test());
+        long time = testResultsRepository.findMaxDate(fighter).getTime() + 604800000;
+        testResult.setDate(new Date(time));
         testResultsRepository.save(testResult);
         model.addAttribute("results", testResult);
         return "redirect:/fighter/results/" + id;
     }
+
+    @GetMapping(path="/bubble")
+    public String bubble(Model model) {
+        model.addAttribute("fighters", fighterRepository.findAll());
+        return "bubble";
+    }
+
 }

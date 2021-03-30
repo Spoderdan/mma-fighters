@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Bubble</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <a th:href="@{/}">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </a>
+            <h1 class="display-4 text-center">Isolation Bubble</h1>
+        </div>
+    </div>
+
+    <div class="align-content-center text-center">
+        <form th:action="@{/fighter/add/result}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="fighter"> Select Fighter</label> <br>
+                <select name="id" id="fighter">
+                    <option value="0">select fighter</option>
+                    <option th:each="fighter : ${fighters}"
+                            th:value="${fighter.id}"
+                            th:text="${fighter.firstName}+ ' ' +${fighter.lastName}">
+                    </option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
